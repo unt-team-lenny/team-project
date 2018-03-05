@@ -1,0 +1,16 @@
+
+.firebaserc
+database.rules.json
+firebase.json
+storage.rules
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
