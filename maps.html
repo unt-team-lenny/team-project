@@ -8,17 +8,46 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
+        padding-left: 500px;
         height: 500px;
-	width:  500px;
+	width:  1920px;
       }
+      #container {
+        width: 100%;
+        text-align: center;
+      }
+
+      #left {
+        float: left;
+        padding-left: 400px;
+        width 100px;
+      }
+      #right {
+        float: right;
+        padding-right: 400px;
+        width 100px;
+      }
+      #center {
+        float: center;
+      }
+
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
+        background: #333;
+        box-sizing: border-box;
         padding: 0;
       }
+      *, ::after, ::before {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        color: #fff;
+      }
       #floating-panel {
-        position: absolute;
+        position: center;
         top: 10px;
         left: 25%;
         z-index: 5;
@@ -33,21 +62,31 @@
     </style>
   </head>
   <body>
-    <div>
-      <h1>Enter event information</h1>
-      <input id="name" type="textbox" value="Event Name">
-      <p>&nbsp</p>
-
-      <input id="address" type="textbox" value="Denton, TX">
-      <p>&nbsp</p>
-      <input id="submit" type="button" value="Submit">
-      <p>&nbsp</p>
-      <input id="date" type="date">
-      <p>&nbsp</p>
-      <input id="time" type="time">
-      <p>&nbsp</p>
+    <div id="container">
+      <h1 align=center>Enter event information</h1>
+      <div id="left">
+        <p>Enter the event name</p>
+        <input id="name" type="textbox" value="Event Name">
+        <p>Enter the event date</p>
+        <input id="date" type="date">
+      </div>
+      <div id="right">
+        <p>Enter the address</p>
+        <input id="address" type="textbox" value="Denton, TX">
+        <p>Enter the event time</p>
+        <input id="time" type="time">
+      </div>
     </div>
-    <div id="map"></div>
+    <div id="center">
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+      <p>&nbsp &nbsp</p>
+    <div align=center id="map">
+    </div>
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -81,5 +120,10 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6qzwoySYZRauFZMHAxva1Uy32XIQi5XU&callback=initMap">
     </script>
+    </div>
+    <div align=center>
+      <p>&nbsp &nbsp</p>
+      <input id="submit" type="button" value="Submit">
+    </div>
   </body>
 </html>
