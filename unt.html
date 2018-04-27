@@ -14,6 +14,48 @@
 
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
+
+    <script type="text/javascript">
+      initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            user.getIdToken().then(function(accessToken) {
+              document.getElementById('sign-in-status').textContent = 'Signed in';
+              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('account-details').textContent = JSON.stringify({
+                displayName: displayName,
+                email: email,
+                emailVerified: emailVerified,
+                phoneNumber: phoneNumber,
+                photoURL: photoURL,
+                uid: uid,
+                accessToken: accessToken,
+                providerData: providerData
+              }, null, '  ');
+            });
+          } else {
+            // User is signed out.
+            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('account-details').textContent = 'null';
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.addEventListener('load', function() {
+        initApp()
+      });
+    </script>
   </head>
 
   <body class="text-center">
@@ -23,8 +65,8 @@
         <div class="inner">
           <h3 class="masthead-brand">UNT Onboarding</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="index.html">Home</a>
-            <a class="nav-link" href="unt.html">UNT</a>
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link active" href="unt.html">UNT</a>
             <a class="nav-link" href="denton.html">Denton</a>
             <a class="nav-link" href="transportation.html">Transportation</a>
             <a class="nav-link" href="student.html">Student</a>
@@ -35,14 +77,18 @@
       </header>
 
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">UNT Onboarding</h1>
-        <p class="lead">UNT Onboarding provides grad students with an awesome way to get to know Denton, find student resources, and meet great people. 
-          <br/>Log in, find interesting events, locate information that's important to you, and suggest ways to enhance the app. 
-          <br/><br/>It's all possible with UNT Onboarding!</p>
-        <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Get started</a>
-        </p>
+        <h1 class="cover-heading">UNT Info</h1>
+        User status: <div id="sign-in-status"></div>
       </main>
+
+      <!--
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">UNT Info</h1>
+        <div id="sign-in-status"></div>
+        <div id="sign-in"></div>
+        <div id="account-details"></div>
+      </main>
+      -->
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
