@@ -58,36 +58,71 @@
     </script>
   </head>
 
-  <body class="text-center">
-
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">UNT Onboarding</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="unt.html">UNT</a>
-            <a class="nav-link" href="denton.html">Denton</a>
-            <a class="nav-link" href="transportation.html">Transportation</a>
-            <a class="nav-link active" href="student.html">Student</a>
-            <a class="nav-link" href="contribution.html">Contribution</a>
-            <a class="nav-link" href="login.html">Login</a>
-          </nav>
-        </div>
+  <body class="text-center" style="padding-top: 54px">
+      <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #00853E;">
+          <a class="navbar-brand" href="index.html">UNT Onboarding</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="unt.html">UNT
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="denton.html">Denton</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="restaurants.html">Restaurants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="events.html">Events</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="student.html">Student
+                    <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contribution.html">Contribution
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Login
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </header>
 
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Student Info</h1>
-        User status: <div id="sign-in-status"></div>
-      </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Capstone project for <a href="https://unt.edu/">UNT.</a></p>
-          <p>Made by <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>, <a href="https://github.com/JustinPenny">Justin Penny</a>, <a href="https://github.com/stevenw11">Steven Wyman</a>, <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
+      <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+          <main role="main" class="inner cover">
+            <h1 class="cover-heading">Student Info</h1>
+            <p class="lead">UNT Onboarding provides grad students with an awesome way to get to know Denton, find student resources, and meet great
+              people.
+              <br/>Log in, find interesting events, locate information that's important to you, and suggest ways to enhance the app.
+              <br/>
+              <br/>It's all possible with UNT Onboarding!</p>
+          </main>
+        
+          <footer class="mastfoot mt-auto">
+            <div class="inner">
+              <p>Capstone project for
+                <a href="https://unt.edu/">UNT.</a>
+              </p>
+              <p>Made by
+                <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>,
+                <a href="https://github.com/JustinPenny">Justin Penny</a>,
+                <a href="https://github.com/stevenw11">Steven Wyman</a>,
+                <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
+            </div>
+          </footer>
         </div>
-      </footer>
-    </div>
 
     <!-- Firebase Script
     ================================================== -->
