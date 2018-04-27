@@ -15,6 +15,45 @@
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
 
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+          height: 500px;
+          width:  100%;
+        }
+        .container {
+          width: 100%;
+          text-align: center;
+        }
+  
+        .left {
+          float: left;
+          padding-bottom: 15px;
+        }
+        .right {
+          float: right;
+          padding-bottom: 15px;
+        }
+        #center {
+          float: center;
+        }
+  
+        #floating-panel {
+          position: center;
+          top: 10px;
+          left: 25%;
+          z-index: 5;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px solid #999;
+          text-align: center;
+          font-family: 'Roboto','sans-serif';
+          line-height: 30px;
+          padding-left: 10px;
+        }
+      </style>
+
     <script type="text/javascript">
       initApp = function() {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -58,39 +97,133 @@
     </script>
   </head>
 
-  <body class="text-center">
-
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">UNT Onboarding</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="unt.html">UNT</a>
-            <a class="nav-link" href="denton.html">Denton</a>
-            <a class="nav-link active" href="transportation.html">Transportation</a>
-            <a class="nav-link" href="student.html">Student</a>
-            <a class="nav-link" href="contribution.html">Contribution</a>
-            <a class="nav-link" href="login.html">Login</a>
-          </nav>
+  <body class="text-center" style="padding-top: 54px">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #00853E;">
+        <a class="navbar-brand" href="index.html">UNT Onboarding</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="unt.html">UNT
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="denton.html">Denton</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="transportation.html">Transportation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="restaurants.html">Restaurants</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="events.html">Events</a>
+              <span class="sr-only">(current)</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="student.html">Student
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contribution.html">Contribution
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login
+              </a>
+            </li>
+          </ul>
         </div>
-      </header>
-
+      </nav>
+    </header>
+  
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Transportation Info</h1>
-        User status: <div id="sign-in-status"></div>
-      </main>
+        <h1 class="cover-heading">Submit Event</h1>
+        <div class="container">
+          <span class="left">
+            <p>Enter the event name</p>
+            <input id="name" type="textbox" value="Event Name">
+          </span>
+          <span class="right">
+            <p>Enter the event date</p>
+            <input id="date" type="date">
+          </span>
+        </div>
+        <div class="container">
+          <span class="left">
+            <p>Enter the address</p>
+            <input id="address" type="textbox" value="Denton, TX">
+          </span>
+          <span class="right">
+            <p>Enter the event time</p>
+            <input id="time" type="time">
+          </span>
+        </div>
+        <div id="center">
+          <div align=center id="map">
+          </div>
+          <script>
+            function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: { lat: 33.21484, lng: -97.13307 }
+              });
+              var geocoder = new google.maps.Geocoder();
 
+              document.getElementById('submit').addEventListener('click', function () {
+                geocodeAddress(geocoder, map);
+              });
+            }
+
+            function geocodeAddress(geocoder, resultsMap) {
+              var address = document.getElementById('address').value;
+              geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                  resultsMap.setCenter(results[0].geometry.location);
+                  console.log(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                  });
+                } else {
+                  alert('Geocode was not successful for the following reason: ' + status);
+                }
+              });
+            }
+
+          </script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6qzwoySYZRauFZMHAxva1Uy32XIQi5XU&callback=initMap">
+          </script>
+        </div>
+        <div align=center style="padding-bottom: 25px">
+          <p>&nbsp &nbsp</p>
+          <input id="submit" type="button" value="Submit">
+        </div>
+      </main>
+  
+  
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Capstone project for <a href="https://unt.edu/">UNT.</a></p>
-          <p>Made by <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>, <a href="https://github.com/JustinPenny">Justin Penny</a>, <a href="https://github.com/stevenw11">Steven Wyman</a>, <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
+          <p>Capstone project for
+            <a href="https://unt.edu/">UNT.</a>
+          </p>
+          <p>Made by
+            <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>,
+            <a href="https://github.com/JustinPenny">Justin Penny</a>,
+            <a href="https://github.com/stevenw11">Steven Wyman</a>,
+            <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
         </div>
       </footer>
     </div>
-
+  
     <!-- Firebase Script
-    ================================================== -->
+      ================================================== -->
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -104,13 +237,16 @@
       };
       firebase.initializeApp(config);
     </script>
-
+  
     <!-- Bootstrap core JavaScript
-    ================================================== -->
+      ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
     <!-- <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
   </body>
 </html>

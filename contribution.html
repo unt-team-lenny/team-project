@@ -58,36 +58,128 @@
     </script>
   </head>
 
-  <body class="text-center">
-
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">UNT Onboarding</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="unt.html">UNT</a>
-            <a class="nav-link" href="denton.html">Denton</a>
-            <a class="nav-link" href="transportation.html">Transportation</a>
-            <a class="nav-link" href="student.html">Student</a>
-            <a class="nav-link active" href="contribution.html">Contribution</a>
-            <a class="nav-link" href="login.html">Login</a>
-          </nav>
-        </div>
+  <body class="text-center" style="padding-top: 54px">
+      <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #00853E;">
+          <a class="navbar-brand" href="index.html">UNT Onboarding</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="unt.html">UNT
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="denton.html">Denton</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="transportation.html">Transportation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="restaurants.html">Restaurants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="events.html">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="student.html">Student
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="contribution.html">Contribution
+                    <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Login
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </header>
 
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Contribution Info</h1>
-        User status: <div id="sign-in-status"></div>
-      </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Capstone project for <a href="https://unt.edu/">UNT.</a></p>
-          <p>Made by <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>, <a href="https://github.com/JustinPenny">Justin Penny</a>, <a href="https://github.com/stevenw11">Steven Wyman</a>, <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
-        </div>
-      </footer>
-    </div>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <main role="main" class="inner cover">
+          <h1 class="cover-heading">Contribute</h1>
+          <aside style="background-color: #00853E">
+              <p>
+                  We would <em>love</em> to hear from you! </p>
+                  <p>Fill out this <b><em>Contact Form</em></b>
+                  to send us a message or suggestion.
+              </p>
+          </aside>
+       
+       <!-- START HERE -->
+          <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+          <!-- Style The Contact Form How Ever You Prefer -->
+          <link rel="stylesheet" href="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/style.css">
+       
+         <form id="gform" method="POST" class="pure-form pure-form-stacked" data-email="other@sanchez.is"
+         action="https://script.google.com/macros/s/AKfycbyeO-c6Vcu-6FynjcpEQTD2DZ6Uy4D_jvGZPNr7I51gtJHjSlc/exec">
+       
+           <!-- change the form action to your script url -->
+       
+           <fieldset class="pure-group">
+             <label for="name">Name: </label>
+             <input id="name" name="name" style="width: 100%" placeholder="What your Mom calls you" />
+           </fieldset>
+       
+           <fieldset class="pure-group">
+             <label for="message">Message: </label>
+             <textarea id="message" name="message" rows="10"
+             placeholder="Tell us what's on your mind..."></textarea>
+           </fieldset>
+       
+           <fieldset class="pure-group">
+             <label for="email"><em>Your</em> Email Address:</label>
+             <input id="email" name="email" style="width: 100%" type="email" value=""
+             required placeholder="your.name@email.com"/>
+             <span id="email-invalid" style="display:none">
+               Must be a valid email address</span>
+           </fieldset>
+       
+           <button class="button-success pure-button button-xlarge">
+             <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+       
+         </form>
+       
+         <!-- Customise the Thankyou Message People See when they submit the form: -->
+         <div style="display:none;" id="thankyou_message">
+           <h2><em>Thanks</em> for contacting us!
+             We will get back to you soon!</h2>
+         </div>
+       
+         <!-- Submit the Form to Google Using "AJAX" -->
+         <script data-cfasync="false" type="text/javascript"
+         src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+         <!-- <script data-cfasync="false" type="text/javascript"
+         src="/form-submission-handler.js"></script> -->
+       <!-- END -->
+       
+       <!-- Ajax implementation for submission message -->
+       <script data-cfasync="false" type="text/javascript"
+       src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+        </main>
+      
+        <footer class="mastfoot mt-auto">
+          <div class="inner">
+            <p>Capstone project for
+              <a href="https://unt.edu/">UNT.</a>
+            </p>
+            <p>Made by
+              <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>,
+              <a href="https://github.com/JustinPenny">Justin Penny</a>,
+              <a href="https://github.com/stevenw11">Steven Wyman</a>,
+              <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
+          </div>
+        </footer>
+      </div>
 
     <!-- Firebase Script
     ================================================== -->
