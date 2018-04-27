@@ -13,74 +13,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
-
-    <script type="text/javascript">
-      initApp = function() {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
-            user.getIdToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
-            });
-          } else {
-            // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      };
-
-      window.addEventListener('load', function() {
-        initApp()
-      });
-    </script>
     <link href="yelp.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
-
 
     <div class="cover-container d-flex h-flex p-flex mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">UNT Onboarding</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="unt.html">UNT</a>
-            <a class="nav-link active" href="denton.html">Denton</a>
-            <a class="nav-link" href="transportation.html">Transportation</a>
-            <a class="nav-link" href="student.html">Student</a>
-            <a class="nav-link" href="contribution.html">Contribution</a>
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link active" href="home.html">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="contact.html">Contact</a>
           </nav>
         </div>
       </header>
 
       <main role="main" class="inner cover">
         <h1 class="cover-heading">About <a href="https://www.youtube.com/watch?v=VxEtxgrqI4U">Denton</a></h1>
-        User status: <div id="sign-in-status"></div>
+        <img src="University_of_North_Texas_seal.png" alt="University of North Texas seal">
         <p class="lead">The Origins</p>
         <p class="lead">Foudned in 1846, the city of Texas was named after militia captain John B. Denton.
             The city remained small until 1881 when the arrival of a railway line spurred population. Shortly after
@@ -104,28 +56,9 @@
     </main>
 
       <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Capstone project for <a href="https://unt.edu/">UNT.</a></p>
-          <p>Made by <a href="https://github.com/edgariscoding/">Edgar Sanchez</a>, <a href="https://github.com/JustinPenny">Justin Penny</a>, <a href="https://github.com/stevenw11">Steven Wyman</a>, <a href="https://github.com/Tsung-HanHsieh">Tsung-Han Hsieh</a>.</p>
-        </div>
       </footer>
     </div>
 
-    <!-- Firebase Script
-    ================================================== -->
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyA7ynQwfAyMYOQlc6tVt9KcZKHWT3LkqKc",
-        authDomain: "unt-onboarding.firebaseapp.com",
-        databaseURL: "https://unt-onboarding.firebaseio.com",
-        projectId: "unt-onboarding",
-        storageBucket: "unt-onboarding.appspot.com",
-        messagingSenderId: "1008143931127"
-      };
-      firebase.initializeApp(config);
-    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
